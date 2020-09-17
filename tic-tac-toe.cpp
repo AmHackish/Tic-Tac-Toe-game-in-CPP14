@@ -42,19 +42,19 @@ int eval(char kash[3][3])
 	}
 	if(kash[0][0]==kash[1][1] and kash[1][1]==kash[2][2] and kash[2][2]=='X')
 		return 10;
-	if(aayu[0][0]==kash[1][1] and kash[1][1]==kash[2][2] and kash[2][2]=='O')
+	if(kash[0][0]==kash[1][1] and kash[1][1]==kash[2][2] and kash[2][2]=='O')
 		return -10;
-	if(aayu[2][0]==kash[1][1] and kash[1][1]==kash[0][2] and kash[2][0]=='X')
+	if(kash[2][0]==kash[1][1] and kash[1][1]==kash[0][2] and kash[2][0]=='X')
 		return 10;
-	if(aayu[2][0]==kash[1][1] and kash[1][1]==kash[0][2] and kash[2][0]=='O')
+	if(kash[2][0]==kash[1][1] and kash[1][1]==kash[0][2] and kash[2][0]=='O')
 		return -10;
 
 	return 0;
 }
 
-int minmax(char kash3][3], int d, bool im)
+int minmax(char kash[3][3], int d, bool im)
 {
-	int score = eval(aayu);
+	int score = eval(kash);
 	if(score == 10)
 		return 10;
 	if(score == -10)
@@ -99,10 +99,10 @@ int minmax(char kash3][3], int d, bool im)
 	}
 }
 
-move bestmove(char kash[3][3])
+struct move bestmove(char kash[3][3])
 {
 	int bestval= -100000000;
-	move bestMove;
+	struct move bestMove;
 	bestMove.r = -1;
 	bestMove.c = -1;
 	for (int i = 0; i < 3; i++)
@@ -161,18 +161,21 @@ int main()
 					cout << "You won!" << endl;
 					break;
 				}
-				move mv = bestmove(aayu);
-				aayu[mv.r][mv.c]=p;
+				struct move mv = bestmove(kash);
+				kash[mv.r][mv.c]=p;
 				cout << "Now my move." << endl;
-				cout << aayu[0][0] << "|" << aayu[0][1] << "|" << aayu[0][2] << endl << aayu[1][0] << "|" << aayu[1][1] << "|" << aayu[1][2] << endl << aayu[2][0] << "|" << aayu[2][1] << "|" << aayu[2][2] << endl;
-				testing = eval(aayu);
+				cout << kash[0][0] << "|" << kash[0][1] << "|" << kash[0][2] << endl;
+				cout << kash[1][0] << "|" << kash[1][1] << "|" << kash[1][2] << endl;
+				cout << kash[2][0] << "|" << kash[2][1] << "|" << kash[2][2] << endl;
+				
+				testing = eval(kash);
 				if(testing > 0)
 				{
 					cout << "I won , you loose!" << endl;
 					break;
 				}
 			}
-			if(eval(aayu)==0)
+			if(eval(kash)==0)
 				cout << "OOPs , yeh toh draw ho gya , chalo ek aur , ISM hai , matiyaana hi toh hai." << endl;
 		}
 		else
