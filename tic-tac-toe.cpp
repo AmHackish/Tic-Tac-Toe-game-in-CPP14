@@ -176,7 +176,7 @@ int main()
 				}
 			}
 			if(eval(kash)==0)
-				cout << "OOPs , yeh toh draw ho gya , chalo ek aur , ISM hai , matiyaana hi toh hai." << endl;
+				cout << "OOPs , yeh toh draw ho gya , chalo ek aur , ISM hai , matiyaana hi toh hai." << endl << endl;
 		}
 		else
 			return 0;
